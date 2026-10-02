@@ -1,0 +1,29 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { filterOrders } from '../src/domain/order-search.ts';
+import type { Order } from '../src/types/order.ts';
+
+const orders: readonly Order[] = Object.freeze([
+  Object.freeze({ orderId: 'pencil-id', productName: 'Field Notebook', quantity: 2 }),
+  Object.freeze({ orderId: 'two', productName: 'Graphite PENCIL', quantity: 4 }),
+  Object.freeze({ orderId: 'three', productName: 'Pocket notebook', quantity: 1 }),
+]);
+
+test('search trims, ignores case and matches only productName', () => {
+  assert.deepEqual(filterOrders(orders, '  NoTeBOOK '), [orders[0], orders[2]]);
+  assert.deepEqual(filterOrders(orders, 'Pencil'), [orders[1]]);
+  assert.deepEqual(filterOrders(orders, 'pencil-id'), []);
+});
+
+test('empty query returns a new array without changing frozen inputs', () => {
+  const result = filterOrders(orders, ' \t ');
+  assert.deepEqual(result, orders);
+  assert.notEqual(result, orders);
+  result.pop();
+  assert.equal(orders.length, 3);
+});
+
+test('no matches and empty input stay empty', () => {
+  assert.deepEqual(filterOrders(orders, 'missing'), []);
+  assert.deepEqual(filterOrders([], 'book'), []);
+});

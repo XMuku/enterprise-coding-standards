@@ -1,0 +1,6 @@
+import type { Order } from '../types/order.ts';
+
+export function filterOrders(orders: readonly Order[], query: string): Order[] {
+  const normalizedQuery = query.trim().toLowerCase();
+  return orders.filter(order => order.productName.toLowerCase().includes(normalizedQuery));
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "企业级编码约束"
+  short_description: "按需应用 Java、Spring、uni-app、小程序与鸿蒙的开发前规范"
+  default_prompt: "使用 $enterprise-coding-standards 对我指定的项目采用或应用这套规范，先确认归属、命名和契约再编码；只读取适用规范，不覆盖现有规则。"

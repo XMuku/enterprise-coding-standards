@@ -1,0 +1,5 @@
+import type { Order } from '../types/order.ts';
+
+export const invalidOrder: Order = {
+  orderId: 'negative-example', productName: 'Notebook', quantity: 'two',
+};

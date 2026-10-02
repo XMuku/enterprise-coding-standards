@@ -1,0 +1,11 @@
+package com.example.order.web;
+
+import com.example.order.persistence.OrderStore;
+
+public class LeakyController {
+    private final OrderStore orderStore;
+
+    public LeakyController(OrderStore orderStore) {
+        this.orderStore = orderStore;
+    }
+}

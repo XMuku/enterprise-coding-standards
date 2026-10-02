@@ -1,0 +1,10 @@
+{
+  "name": "Order Notebook",
+  "appid": "",
+  "description": "Local coding-standards example with mock orders",
+  "versionName": "0.1.0",
+  "versionCode": "1",
+  "uniStatistics": { "enable": false },
+  "h5": { "router": { "mode": "hash" } },
+  "mp-weixin": { "appid": "", "setting": { "urlCheck": true } }
+}

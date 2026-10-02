@@ -1,0 +1,4 @@
+{
+  "pages": [{ "path": "pages/order-list/index", "style": { "navigationBarTitleText": "Order Notebook" } }],
+  "globalStyle": { "navigationBarBackgroundColor": "#f2eee4", "navigationBarTextStyle": "black" }
+}

@@ -1,0 +1,50 @@
+package com.example.order;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class SummaryAcceptanceTest {
+    @LocalServerPort
+    private int port;
+    private final ObjectMapper json = new ObjectMapper();
+    private final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
+
+    @Test
+    void summaryContractAndExistingEndpoint() throws Exception {
+        for (int quantity : new int[]{1, 3, 99}) {
+            var created = client.send(HttpRequest.newBuilder(URI.create("http://127.0.0.1:" + port + "/api/orders"))
+                    .timeout(Duration.ofSeconds(10)).header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString("{\"productName\":\"Notebook\",\"quantity\":" + quantity + "}"))
+                    .build(), HttpResponse.BodyHandlers.ofString());
+            assertEquals(201, created.statusCode());
+            String id = json.readTree(created.body()).path("orderId").asText();
+            var summary = get("/api/orders/" + id + "/summary");
+            assertEquals(200, summary.statusCode());
+            var expected = json.createObjectNode().put("orderId", id).put("quantity", quantity)
+                    .put("kind", quantity == 1 ? "single" : "multiple");
+            assertEquals(expected, json.readTree(summary.body()));
+            assertEquals(json.readTree(created.body()), json.readTree(get("/api/orders/" + id).body()));
+        }
+    }
+
+    @Test
+    void missingSummaryPreservesErrorContract() throws Exception {
+        var response = get("/api/orders/not-created/summary");
+        assertEquals(404, response.statusCode());
+        assertEquals("ORDER_NOT_FOUND", json.readTree(response.body()).path("code").asText());
+    }
+
+    private HttpResponse<String> get(String route) throws Exception {
+        return client.send(HttpRequest.newBuilder(URI.create("http://127.0.0.1:" + port + route))
+                .timeout(Duration.ofSeconds(10)).GET().build(), HttpResponse.BodyHandlers.ofString());
+    }
+}
