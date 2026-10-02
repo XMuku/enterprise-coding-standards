@@ -27,7 +27,7 @@ GitHub 不要求仓库必须选择许可证。没有许可证时，默认版权�
 5. 执行已授权上传。逐项审查拟提交文件，不盲目 `git add .`；保留已有修改，不强推、不改写历史、不替换已有远端，除非这些动作另有明确授权。
 6. 上传后核验。查看实际提交与公开内容，取得真实仓库 URL；如执行了 CI，读取实际结果。推送成功不等于所有 job 通过，CI 成功也不等于已经创建 Release。
 
-本次只完善仓库文档时停在第 3 步。发布准备提示词见 [11 GitHub 发布准备](../prompts/11-release-preparation.md)，不会因为复制这段流程自动授权远端动作。
+只要求完善仓库文档的任务停在第 3 步。发布准备提示词见 [11 GitHub 发布准备](../prompts/11-release-preparation.md)，不会因为复制这段流程自动授权远端动作；已授权上传的实际结果见本版验证记录。
 
 ## 发布前清单
 
@@ -45,7 +45,7 @@ GitHub 不要求仓库必须选择许可证。没有许可证时，默认版权�
 
 CI 使用普通 `push` / `pull_request` 事件、只读仓库权限，不使用 `pull_request_target`，不自动发布、上传业务资料或使用部署密钥。当前固定 [checkout v7.0.1 的发布提交](https://github.com/actions/checkout/commit/3d3c42e5aac5ba805825da76410c181273ba90b1) 和 [setup-node v7.0.0 的发布提交](https://github.com/actions/setup-node/commit/820762786026740c76f36085b0efc47a31fe5020)；固定版本不等于完整安全审计。
 
-示例 job 额外固定 [setup-java v6.0.1 提交](https://github.com/actions/setup-java/commit/de7274f081f381c8f8158605e0321c36c376e2e6)，配置 Java 17 / Node.js 24，在 Linux 与 Windows 上运行正反例；这描述 CI 的目标矩阵，不代表远端已执行。依赖审计风险和未验证项见 [本地验证报告](verification-beta3.md)。
+示例 job 额外固定 [setup-java v6.0.1 提交](https://github.com/actions/setup-java/commit/de7274f081f381c8f8158605e0321c36c376e2e6)，配置 Java 17 / Node.js 24，在 Linux 与 Windows 上运行正反例；配置只描述目标矩阵，具体提交是否通过须查看实际执行。最新执行与依赖审计风险见 [本版验证记录](verification-beta5.md)，历史范围见 [beta.3 报告](verification-beta3.md)。
 
 ## 版本与兼容性
 

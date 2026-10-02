@@ -18,12 +18,15 @@
 | 五栈 31 种非空组合 | 文件选择及本地链接自包含均通过 | 不安装业务 SDK/依赖，不验证业务工程 |
 | 拒绝回归 | 鸿蒙源规范缺失时写入前拒绝；源码/配置中的驱动器绝对路径、用户主目录、UNC 共享、文件 URI 与凭据样例被识别 | 报告只含文件名，不输出命中秘密；不是完整秘密扫描 |
 | 官方 Skill 格式校验 | `Skill is valid!`，退出 0 | 格式有效不证明真实 Agent 遵守规则 |
+| `npm run test:negative` | 退出 0；Spring 与 uni-app 正例通过，四类故意违规均被对应门禁拒绝 | 包含 H5/微信构建，不代表平台交互或生产安全 |
+| `npm run test:eval-harness` | 退出 0；缺失实现正确失败、维护侧正确控制通过 | 控制答案不是独立 Agent 或 UI 评测成绩 |
+| `npm audit --json`（uni-app） | 退出 1；40 个受影响依赖项：13 high、12 moderate、15 low、0 critical | 本版重新审计的汇总，不等于 40 个独立漏洞；风险未修复 |
 
-示例正反例与评分器控制正在重新验证；结果完成后更新。没有把本地检查结果宣称为远端矩阵成功。
+首个源码提交的 [GitHub CI](https://github.com/XMuku/enterprise-coding-standards/actions/runs/36999033982) 已实际启动，远端结果以链接中的实际 job 为准；尚未完成的 job 不计为通过。工作流覆盖 Linux/Windows 的 Node.js 22/24 基础检查和 Java 17/Node.js 24 示例控制；本版不会以 YAML 存在代替执行结果。
 
 ## 发布边界
 
-已核对认证账号并创建 [GitHub 仓库](https://github.com/XMuku/enterprise-coding-standards)，源码推送与远端内容核验待执行；空仓库不等于已上传源码。提交采用项目通用身份，不使用本机个人 Git 邮箱；不包含本地日志、测试产物、知识库目录或凭据。
+已核对认证账号、创建并推送 [公开 GitHub 仓库](https://github.com/XMuku/enterprise-coding-standards)。从远端重新克隆后，113 个文件与 58 个 Markdown 文件校验通过，远端提交与本地一致；初始提交无旧历史，仅包含审查过的发行内容。提交采用项目通用身份，不使用本机个人 Git 邮箱；不包含本地日志、测试产物、知识库目录或凭据。隐私正则与人工核对不能视为完整秘密审计认证。
 
 不添加 LICENSE，保留 private/UNLICENSED 元数据；源码发布与 npm 发布、GitHub Release、部署分别处理。本版不自动创建 Release 或标签。
 
@@ -31,6 +34,6 @@
 
 没有真实 HarmonyOS SDK 构建、模拟器/真机验证、鸿蒙可运行示例或独立 Agent 鸿蒙场景结果；13 类提示词不等于全部经过行为评测。
 
-现有两个演示与评分器的历史结果见 [beta.3](verification-beta3.md)，文档流程历史结果见 [beta.4](verification-beta4.md)。本版没有调整示例依赖，历史依赖风险未因规则整合消除；未运行的新审计不得沿用历史数量冒充实时结果。前端双端构建不等于开发者工具/真机运行，检查门禁控制不等于独立 Agent 任务完整成功。
+现有两个演示与评分器的历史结果见 [beta.3](verification-beta3.md)，文档流程历史结果见 [beta.4](verification-beta4.md)。本版重跑示例、反例、评分器控制和依赖审计，但未调整依赖，审计风险仍存在；示例不推荐作为生产脚手架。前端双端构建不等于开发者工具/真机运行，检查门禁控制不等于独立 Agent 任务完整成功。
 
 整合映射与不适用泛化的修正见 [框架整合说明](framework-integration.md)。
