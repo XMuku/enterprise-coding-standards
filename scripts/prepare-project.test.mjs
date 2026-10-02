@@ -95,7 +95,19 @@ test('every nonempty stack combination exports exactly its self-contained rule s
     assert.equal(JSON.parse(result.stdout).written.length, expected.length + 1);
     for (const name of expected) {
       const file = path.join(docs, name);
-      assert.deepEqual(validateMarkdownLinks(project, file, fs.readFileSync(file, 'utf8')), [], `${selected}: ${name}`);
+      const content = fs.readFileSync(file, 'utf8');
+      assert.deepEqual(validateMarkdownLinks(project, file, content), [], `${selected}: ${name}`);
+      if (name === 'project-profile.md') {
+        const template = fs.readFileSync(path.join(kit, 'assets', 'project-profile-template.md'), 'utf8');
+        const [before, after] = template.split('<!-- selected-stack-map -->');
+        assert.ok(content.startsWith(before), `${selected}: profile preamble must be preserved`);
+        assert.ok(content.endsWith(after), `${selected}: profile trailing rules must be preserved`);
+      } else {
+        const source = name === 'checks-plan.md'
+          ? path.join(kit, 'assets', 'checks-plan-template.md')
+          : path.join(kit, 'references', name);
+        assert.equal(content, fs.readFileSync(source, 'utf8'), `${selected}: ${name} content must be preserved`);
+      }
     }
   }
 });

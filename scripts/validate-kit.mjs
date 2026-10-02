@@ -32,6 +32,7 @@ const required = [
   'prompts/10-resume-handoff.md', 'prompts/11-release-preparation.md',
   'references/modular-architecture.md', 'references/harmonyos-arkui.md',
   'docs/framework-integration.md', 'docs/verification-beta5.md', 'prompts/12-harmonyos-arkui-feature.md',
+  'docs/verification-beta6.md',
 ];
 
 function within(root, target) {

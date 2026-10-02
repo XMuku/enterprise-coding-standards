@@ -1,6 +1,6 @@
 {
   "name": "enterprise-coding-standards",
-  "version": "1.2.0-beta.5",
+  "version": "1.2.0-beta.6",
   "description": "Pre-code conventions and project adoption templates for AI coding agents",
   "private": true,
   "license": "UNLICENSED",

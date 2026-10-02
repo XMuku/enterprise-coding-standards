@@ -6,7 +6,7 @@ A portable, local-first skill and project-adoption kit for AI coding agents.
 
 GitHub 仓库：[XMuku/enterprise-coding-standards](https://github.com/XMuku/enterprise-coding-standards)。
 
-当前版本：**1.2.0-beta.5**。面向团队试用的规范模板，不是认证标准。不绑定模型供应商，不要求购买特定云服务。维护者已决定 **不添加 LICENSE**；公开可见不等于授予开源使用许可，详见 [发布与使用权说明](docs/releasing.md)。
+当前版本：**1.2.0-beta.6**。面向团队试用的规范模板，不是认证标准。不绑定模型供应商，不要求购买特定云服务。维护者已决定 **不添加 LICENSE**；公开可见不等于授予开源使用许可，详见 [发布与使用权说明](docs/releasing.md)。
 
 ## 完整流程与提示词
 
@@ -67,6 +67,17 @@ GitHub 仓库：[XMuku/enterprise-coding-standards](https://github.com/XMuku/ent
 
 beta.5 将通用框架材料整合为 [模块架构规则](references/modular-architecture.md) 和鸿蒙专项，而不是叠加十个重复 Skill。三层职责、MVVM、组件、状态、资源与迁移按实际项目采用；整合映射及冲突处理见 [整合说明](docs/framework-integration.md)。
 
+beta.6 将原四栈补齐为工程蓝图：目录树、各层职责、文件/类型/方法/字段命名、允许与禁止的依赖、功能创建顺序及核验方式。首次采用把默认或已有布局记进 [项目画像](assets/project-profile-template.md)，日常 Agent 创建文件前直接查询；不需要每次搜索上游或重新选择目录。已填映射与前后端串联见 [采用示例](docs/example-adoption.md)。本版的发布前检查与限制见 [验证记录](docs/verification-beta6.md)，远端 CI 以对应提交的实际运行结果为准。
+
+| 技术栈 | 明确规定的主要角色 | 保留的项目选择 |
+| --- | --- | --- |
+| Java/Spring | Controller、Service、Mapper/Repository、模型、请求/响应 DTO | 既有包布局、ORM、领域端口、真实需要的服务接口 |
+| Java EE | Resource/Servlet、应用服务、领域、持久化、DTO、部署资源 | 容器能力、组件模型、WAR/EAR 与描述符 |
+| uni-app | 页面、组件、客户端 API、传输、可选用例/组合逻辑/共享状态 | 源码根、Vue/JS/TS、现有请求与状态方案 |
+| 原生微信 | 页面/组件配套、API、传输、可选业务服务/平台适配、注册资源 | miniprogramRoot、语言、分包与实际基础库 |
+
+HTTP 接口层不是必建语言 interface；服务层也不是强制新增一层空转发类。**已确认项目映射优先，新项目有默认，已有项目不强制搬迁。** 文档先约束生成，门禁再检查可机械判定部分，接入状态见 [规则与检查](docs/rules-and-checks.md)。
+
 提供了两个限定版本的可运行演示，但没有“适用任何项目”的通用 pom、ESLint 或架构测试配置。工具必须匹配实际版本和源码结构；文档能指导生成，检查门禁才能阻止部分违规合并，两者不等价。
 
 ### 详细规范按什么任务取用
@@ -111,7 +122,7 @@ node scripts/prepare-project.mjs --project "<absolute-project-directory>" --stac
 
 实际执行范围、评测中断和依赖漏洞风险集中记录在 [beta.3 验证报告](docs/verification-beta3.md)。示例是学习与检查演示，不是可直接上线的企业生产模板。
 
-beta.5 的整合、隐私检查和工具回归记录在 [本版验证报告](docs/verification-beta5.md)，beta.4 记录保留在 [历史报告](docs/verification-beta4.md)；历史示例结果不自动视为本版全部流程或跨模型验证通过。鸿蒙规则尚未完成真实 SDK 构建与设备验证。
+beta.6 的工程蓝图与导出回归见 [本版验证报告](docs/verification-beta6.md)，beta.5 整合与发布见 [历史报告](docs/verification-beta5.md)；历史示例结果不自动视为本版全部流程或跨模型验证通过。鸿蒙规则尚未完成真实 SDK 构建与设备验证。
 
 ```shell
 npm run check

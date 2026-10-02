@@ -2,7 +2,7 @@
 name: enterprise-coding-standards
 description: Adopt or apply this enterprise coding standards kit to Java/Spring, Java EE, uni-app, native WeChat, or HarmonyOS/ArkUI projects when the user requests this standard. Not a deployment workflow.
 metadata:
-  version: "1.2.0-beta.5"
+  version: "1.2.0-beta.6"
 ---
 
 # 企业级编码规范的采用与开发
@@ -36,6 +36,8 @@ metadata:
 | 来源核对、升级或来源冲突 | [来源与维护](references/sources.md) |
 
 写代码前确定新增对象的归属、名字、边界与关键契约；小修复不要求另写完整计划。目录模式、类后缀和响应格式属于可调整的默认值，不得覆盖项目决策。
+
+创建模块、层或文件时，先核对专项规范中的工程蓝图，将职责映射到项目画像中的真实相对路径、命名和依赖方向。已有映射直接复用；新项目先选定默认或明确调整，不为同一职责创建另一套目录。HTTP 接口层不等于必须创建语言 interface。
 
 执行顺序是需求与验收、写前约束、最小实现与回归、实际验证与交付。关键业务或授权不明确时只暂停相关动作；不要把每一阶段都变成等待审批。最终自述不能代替写入前的决定或实际检查证据。
 

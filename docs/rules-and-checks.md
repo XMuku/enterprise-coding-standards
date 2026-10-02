@@ -11,14 +11,15 @@ beta.3 提供 [关键正反例](rule-examples.md) 和 [可执行演示](../examp
 | [HOS-01..06 鸿蒙](../references/harmonyos-arkui.md) | SDK/API、装饰器位置、模块形态、路由和资源登记 | 真实 SDK 构建、状态交互、生命周期与设备验证；本包尚无可运行鸿蒙示例 |
 | [NAME-01..04 命名与注释](../references/naming-design.md) | 区分对象类别、单位、可空性和副作用 | 命名与类型检查、序列化测试；规则不能只有统一正则 |
 | [TYPE-01..02 接口与继承](../references/naming-design.md) | 确认真实扩展点和可替代关系 | 依赖/契约测试与审查；文件数不证明抽象合理 |
-| [Java/Spring 分层](../references/java-spring.md) | 明确协议、用例和持久层边界 | ArchUnit 针对真实包验证；必须防止空匹配 |
+| [SPRING-01..06](../references/java-spring.md) | 工程蓝图、Controller/Service/存储/DTO 职责，接口策略和创建顺序 | 命名/注册/ArchUnit 针对真实包验证；必须防止空匹配 |
+| [EE-01..06](../references/java-ee.md) | WAR/EAR 模块、Resource/Servlet、服务/领域/存储、容器资源归属 | 打包内容、架构及目标容器集成；编译不等于部署兼容 |
 | [API-01..02 接口与幂等](../references/contracts-security.md) | 明确输入输出、错误、重复请求和权限 | 接口/契约/拒绝路径测试；编译不足以证明兼容 |
 | [DB-01..05 数据与迁移](../references/data-access.md) | 精度、查询边界、并发约束、旧数据升级 | 实际数据库测试；不由 mock 或内存库结果全部代替 |
 | [TEST-01..05 测试有效性](../references/testing.md) | 选择可观察断言、发现路径、隔离与失败场景 | 真实运行数量/结果和回归用例；不以空通过充数 |
 | [CONFIG-01..02、LOG-01 配置与日志](../references/configuration-logging.md) | 来源/缺省、秘密分类和脱敏 | 配置/日志测试与审查；不打印秘密作为验证 |
 | [RUN-01..02 运行边界](../references/configuration-logging.md) | 失败预算、生命周期与共享状态 | 超时/重复/清理测试；不只验证正常路径 |
 | [CHANGE、DEP、RULE 系列](../references/change-management.md) | 影响范围、兼容证据、例外和升级差异 | 差异审查与受影响测试；不以扩大忽略范围通过 |
-| [uni-app](../references/uni-app.md) / [原生小程序](../references/miniprogram.md) | 页面/组件/路由、平台、生命周期和状态 | 目标端构建及交互；不由 H5 构建代替 |
+| [UNI-01..06](../references/uni-app.md) / [WX-01..06](../references/miniprogram.md) | 页面/组件/API/传输、可选用例和状态职责，路径/路由注册 | 实际导入边界、路由/资源、目标端构建与交互；不由 H5 构建代替 |
 
 正文：[通用规则](../references/common.md)、[Java/Spring](../references/java-spring.md)、[Java EE](../references/java-ee.md)、[uni-app](../references/uni-app.md)、[小程序](../references/miniprogram.md)、[契约与安全](../references/contracts-security.md)。
 
@@ -33,3 +34,18 @@ Agent 自身的指令层级不由本包改变。在项目约定内，正式架�
 每项检查记录工作目录、真实命令、覆盖的源码、排除范围和执行状态。用最小违规样例证明会失败，再修正证明会通过；样例测试不要留在生产代码里。
 
 “规则已采用”与“检查已启用”分别记录。未安装 Checkstyle 的项目也可以遵守命名规则，但不能把它描述成有自动命名门禁。反之，格式化通过也不代表业务接口、权限和架构合理。
+
+## 工程蓝图的检查接入对照
+
+以下是接入方案，不是新增了通用门禁。记录在目标项目 `checks-plan.md`，未实现的项保持“未接入”；文档走查可先执行，但不能记成自动检查通过。
+
+| 要验证的约束 | 适配真实项目后可做的检查 | 必须避免的假通过 |
+| --- | --- | --- |
+| 路径/包/文件与角色映射一致 | 解析实际源码根和已选角色；检查公共 Java 类型/包路径、页面配套与引用大小写 | 仅搜索 controller 目录，忽略既有 web；目录空仍通过 |
+| Java 源码依赖方向 | 将画像包名映射进架构测试，覆盖 Controller 越层、持久层反向依赖、跨域私有访问 | 把六边形端口误判成领域依赖实现；扫描 0 个类 |
+| 前端 API 不反向操作页面 | 依赖边界检查覆盖实际别名/再导出；配合代码审查确认页面状态所有者 | 只检查文本 `../pages`，漏过别名或动态导入 |
+| 页面/组件真正接通 | 解析路由/分包/组件注册与资源路径，再做目标端运行 | 文件存在但无路由，或 H5 构建冒充原生小程序验证 |
+| 接口/服务不是无用空壳 | 审查真实调用方、替换边界、编排逻辑；必要时做契约测试 | 以文件数量或统一 Impl 后缀认定架构质量 |
+| 注册和运行时资源有效 | Spring 扫描/注入、EE 部署/托管资源、前端生命周期的受影响测试 | 编译通过便断言注入、事务、路由和清理都正确 |
+
+接入验证应有至少一个适用的故意违规样例能失败，以及修复后通过的证据。本包已有可执行正反例的覆盖仍限于 [样例说明](rule-examples.md)，没有自动扩展为 EE 或原生小程序门禁。

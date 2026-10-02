@@ -25,3 +25,19 @@
 | CHANGE/TEST：不能改门槛伪造通过 | 修正业务代码，增加新回归测试，保留旧测试和用户笔记 | 删除架构测试、改 npm check、覆盖无关文件 | [Agent 评测](../evals/README.md) 的受保护文件哈希 + 独立验收 |
 
 最后两组不需要通过更多文档来证明，而应通过真实执行和文件差异取证。对于权限、数据库事务、Java EE 生命周期、微信真机能力，这两份演示没有相应运行证据；参照专项规范在真实项目补齐。
+
+## 工程蓝图的写前正反例
+
+这组为设计走查案例，**没有新增可执行反例或独立 Agent 评测成绩**。规则编号用于定位当前专项章节，实际门禁按 [接入对照](rules-and-checks.md) 配置。
+
+| 场景 | 首次写入前应决定的正例 | 反例 | 验收依据 |
+| --- | --- | --- | --- |
+| SPRING-02 既有目录 | HTTP/用例/存储映射为既有 web/application/persistence，在原处扩展 | 按新模板再建 controller/service/mapper | 新文件路径、画像和 imports；不迁移可运行示例来凑默认名 |
+| SPRING-03 语言接口 | OrderController 是 HTTP 入口；OrderService 暂无替换契约，不建接口 | 把“新增接口层”理解为每个类自动生成 I 类型与 Impl | 服务调用者和实际接口需要，不以数量评分 |
+| EE-02 容器入口 | 按既有 REST 增 OrderResource，复用组件模型和部署模块 | 顺便引入 Spring Controller、Servlet 和新共享 JAR | 打包差异、组件依赖与受影响容器测试 |
+| UNI-02 API 与服务 | 单次查询复用 api/order；多 API 业务编排才抽 services | 每个 API 机械包一层 service，再创建同名 store | 责任与调用链是否唯一，代码中是否有真实编排 |
+| UNI-03 状态边界 | 页面/组合逻辑拥有状态，API 返回结果，由调用方处理展示 | request.ts import 订单页面或 store 形成循环 | 导入图、竞态/失败测试，不能只看目录 |
+| WX-02 页面注册 | 按真实源码根创建必要配套，在对应分包注册并验证访问 | 在错误根目录建四个空文件，未改 app.json | 配置解析、开发者工具打开页面的证据 |
+| WX-03 API 边界 | API 不持有 Page，页面检查请求有效性后 setData | 通用 API 接收页面实例并从内部改私有状态 | 引用关系与离开页面后旧响应的行为测试 |
+
+一个合格的写前简述可以是：“沿用订单域已有 web/application/persistence；新增请求 DTO，复用 OrderService 和 Mapper；前端复用 api/request，在 pages.json 注册订单页；不建空服务接口或全局 store；用接口拒绝路径及页面失败恢复验证。”这不是让 Agent 复制固定句式，实际路径、决定和执行结果必须一致。

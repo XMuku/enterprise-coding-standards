@@ -1,6 +1,6 @@
 # 发布准备与许可证状态
 
-当前版本：`1.2.0-beta.5`。维护者已决定在 GitHub 发布时不添加 LICENSE。实际上传、CI 与未验证项以 [本版记录](verification-beta5.md) 为准；源码推送不表示创建了 Release 或标签。
+当前版本：`1.2.0-beta.6`。维护者已决定在 GitHub 发布时不添加 LICENSE，并授权将本版推送到现有公开仓库。发布前验证与未验证项见 [本版记录](verification-beta6.md)，beta.5 见 [历史记录](verification-beta5.md)；远端状态以仓库提交和对应 Actions 结果为准。源码推送不表示创建了 Release 或标签。
 
 ## 已决定不添加许可证
 
@@ -45,7 +45,7 @@ GitHub 不要求仓库必须选择许可证。没有许可证时，默认版权�
 
 CI 使用普通 `push` / `pull_request` 事件、只读仓库权限，不使用 `pull_request_target`，不自动发布、上传业务资料或使用部署密钥。当前固定 [checkout v7.0.1 的发布提交](https://github.com/actions/checkout/commit/3d3c42e5aac5ba805825da76410c181273ba90b1) 和 [setup-node v7.0.0 的发布提交](https://github.com/actions/setup-node/commit/820762786026740c76f36085b0efc47a31fe5020)；固定版本不等于完整安全审计。
 
-示例 job 额外固定 [setup-java v6.0.1 提交](https://github.com/actions/setup-java/commit/de7274f081f381c8f8158605e0321c36c376e2e6)，配置 Java 17 / Node.js 24，在 Linux 与 Windows 上运行正反例；配置只描述目标矩阵，具体提交是否通过须查看实际执行。最新执行与依赖审计风险见 [本版验证记录](verification-beta5.md)，历史范围见 [beta.3 报告](verification-beta3.md)。
+示例 job 额外固定 [setup-java v6.0.1 提交](https://github.com/actions/setup-java/commit/de7274f081f381c8f8158605e0321c36c376e2e6)，配置 Java 17 / Node.js 24，在 Linux 与 Windows 上运行正反例；配置只描述目标矩阵，具体提交是否通过须查看实际执行。本版执行范围见 [验证记录](verification-beta6.md)，最近示例执行与依赖审计风险见 [beta.5](verification-beta5.md)，更早范围见 [beta.3 报告](verification-beta3.md)。
 
 ## 版本与兼容性
 

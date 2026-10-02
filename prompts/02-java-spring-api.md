@@ -15,6 +15,10 @@
 如果实际是 WebFlux、Java EE 或其他结构，不强行套用 MVC 模板；按项目事实调整并说明。
 检查已有修改、同模块实现、调用方和测试入口，不顺手升级或切换 ORM。
 
+从画像核对工程蓝图和角色映射：controller/service/mapper 与 web/application/persistence
+是可选职责映射，不同时新增两套。明确 Mapper/Repository 或领域端口与实现的选择。
+HTTP 接口层指 Controller，不因此生成 Java interface；先采用既有类型后缀与服务接口策略。
+
 首次相关写入前说明：
 1. 业务模块、真实包名前缀、计划新建/修改的相对路径和依赖方向。
 2. Controller/应用服务/领域/持久化各自职责，沿用已有架构而非新造平行层。

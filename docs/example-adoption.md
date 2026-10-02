@@ -18,6 +18,24 @@
 
 这里的前端/后端名称只是示例，不由脚本强制创建。候选模板不自动生效；如果项目本来有规则，应合并而不是删除后重建。
 
+### 填好的角色映射示意
+
+继续上述假设：确认后端既有 `web/application/persistence`，前端既有 `src/pages` 和 `src/api`。这里所有路径与类型仍是虚构示意，不是本包检测出来的项目事实。真实采用时必须补上证据文件。
+
+| 角色 | 相对项目的路径 | 命名/依赖选择 | 配套核对 |
+| --- | --- | --- | --- |
+| 后端 HTTP 入口 | `backend/src/main/java/com/example/order/web/` | `OrderController` 依赖 `application`，不访问 `persistence` | 实际组件扫描、HTTP 契约测试 |
+| 后端用例 | `backend/src/main/java/com/example/order/application/` | `OrderService`；当前单实现不抽接口，访问本域持久化 | 用例测试、事务调用路径 |
+| 后端持久化 | `backend/src/main/java/com/example/order/persistence/` | `OrderMapper`；不新增 JPA Repository，不反向依赖 web | Mapper 注册、SQL/数据库测试 |
+| 后端协议 DTO | `backend/src/main/java/com/example/order/web/` | 沿用 `CreateOrderRequest`、`OrderResponse` 的既有位置 | 字段允许集、序列化测试 |
+| 前端页面 | `frontend/src/pages/order-create/` | `index.vue` 组合状态、调用 API | `pages.json`、加载/失败/提交交互 |
+| 前端 API | `frontend/src/api/` | `order.ts` 的 `createOrder` 复用 `request.ts`，不访问页面 | 请求/响应、错误契约 |
+| 前端类型 | `frontend/src/types/` | `order.ts` 的请求/结果类型，不 import 页面或 API 实现 | 类型与运行时边界检查 |
+
+此处保留后端 DTO 在 web 的既有选择，不因新版默认 dto/request 而搬家。前端单次创建调用没有独立用例编排，因此不建 `services/order-service.ts`；页面私有状态也不提升到全局 store。源文件、测试与配置的真实映射均记录在画像，下面的任务直接复用。
+
+新建且无既定架构的项目则可选择专项默认：后端 `order/controller`、`service`、选定的 `mapper` 或 `repository`、`dto/request`、`dto/response`；先确定包根和需要哪些层，再创建实际文件。不能把“旧项目沿用映射”理解为“新项目永远没有默认值”。
+
 ## 3. 新功能：创建订单
 
 开发前可简述下面这些决定，不必生成长规划文档：
