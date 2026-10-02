@@ -2,7 +2,7 @@
 name: enterprise-coding-standards
 description: Adopt or apply this enterprise coding standards kit to Java/Spring, Java EE, uni-app, native WeChat, or HarmonyOS/ArkUI projects when the user requests this standard. Not a deployment workflow.
 metadata:
-  version: "1.2.0-beta.6"
+  version: "1.2.0-beta.7"
 ---
 
 # 企业级编码规范的采用与开发
@@ -33,6 +33,7 @@ metadata:
 | 配置、日志、外部请求或资源生命周期 | [配置与日志](references/configuration-logging.md) |
 | 依赖、公开契约、规范例外或版本升级 | [变更管理](references/change-management.md) |
 | 检查接入或失败诊断 | [检查接入](references/checks.md) |
+| 选择验证范围、复杂交付或验证受阻 | [风险与证据](references/quality-gates.md)；写入前选范围，不把记录校验当测试 |
 | 来源核对、升级或来源冲突 | [来源与维护](references/sources.md) |
 
 写代码前确定新增对象的归属、名字、边界与关键契约；小修复不要求另写完整计划。目录模式、类后缀和响应格式属于可调整的默认值，不得覆盖项目决策。

@@ -1,6 +1,6 @@
 {
   "name": "enterprise-coding-standards",
-  "version": "1.2.0-beta.6",
+  "version": "1.2.0-beta.7",
   "description": "Pre-code conventions and project adoption templates for AI coding agents",
   "private": true,
   "license": "UNLICENSED",
@@ -10,7 +10,7 @@
   },
   "scripts": {
     "validate": "node scripts/validate-kit.mjs",
-    "test": "node --test scripts/prepare-project.test.mjs scripts/validate-kit.test.mjs scripts/example-support.test.mjs",
+    "test": "node --test scripts/prepare-project.test.mjs scripts/validate-kit.test.mjs scripts/example-support.test.mjs scripts/validate-evidence.test.mjs",
     "check": "npm run validate && npm test",
     "check:examples": "node scripts/check-examples.mjs",
     "test:negative": "node scripts/check-examples.mjs --negative",

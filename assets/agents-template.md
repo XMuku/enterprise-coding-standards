@@ -20,6 +20,7 @@
 - 创建目录、类型、接口或字段时，按 common 中的入口补读仓库结构与命名；行为、配置、依赖变化只补读对应专题，不全量加载。
 - API/数据/权限相关改动读取 `docs/coding-standards/contracts-security.md`。
 - 接入或修改检查时读取 `docs/coding-standards/checks.md` 与 `checks-plan.md`。
+- 选择验证范围或处理复杂/高风险变更时，按 `docs/coding-standards/quality-gates.md` 在写入前确定检查项；未运行、空覆盖与工具不可用不算通过。
 - 不每次阅读全文、重扫全仓或访问全部来源；版本兼容和不确定事实另行查证。
 
 ## 验证与交付

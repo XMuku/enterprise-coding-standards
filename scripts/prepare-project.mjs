@@ -77,7 +77,7 @@ function makePlan(selectedStacks) {
   const plan = [{ relative: 'AGENTS.md.candidate', source: 'assets/agents-template.md' }];
   const references = [
     'common', 'repository-structure', 'modular-architecture', 'naming-design', 'testing', 'configuration-logging',
-    'change-management', 'contracts-security', 'checks', 'sources', ...selectedStacks,
+    'change-management', 'contracts-security', 'checks', 'quality-gates', 'sources', ...selectedStacks,
   ];
   if (selectedStacks.some((stack) => stack === 'java-spring' || stack === 'java-ee')) references.push('data-access');
   for (const name of references) {

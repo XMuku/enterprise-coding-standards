@@ -1,6 +1,6 @@
 # 来源与维护
 
-本地包版本 1.2.0-beta.6，更新日期 2026-10-02。规则由项目维护者与 AI 辅助整理，是项目治理模板，不是任何上游官方标准。链接供审查和必要时查证，普通开发无需全部打开。
+本地包版本 1.2.0-beta.7，更新日期 2026-10-03。规则由项目维护者与 AI 辅助整理，是项目治理模板，不是任何上游官方标准。链接供审查和必要时查证，普通开发无需全部打开。
 
 | 来源 | 角色 | 采用边界 |
 | --- | --- | --- |
@@ -33,7 +33,19 @@
 | [OpenHarmony Local](https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-local.md) / [Param](https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-param.md) / [ObservedV2 与 Trace](https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-new-observedV2-and-trace.md) | V2 状态角色与观察范围核对 | 文档可能更新，商业 HarmonyOS SDK/API 需单独核对；不直接作为项目编译版本 |
 | [Huawei HAR/HSP 指导](https://developer.huawei.com/consumer/cn/doc/doccenter-getting-started/har-to-hsp) | 模块形态转换参考 | 真实清单、依赖、资源和目标版本优先；不把模块名称互换视为迁移完成 |
 
-## Agent 加载机制
+## beta.7 专项比较来源
+
+| 来源快照 | 借鉴范围与边界 |
+| --- | --- |
+| [Terraform standards](https://github.com/casa-de-vops/terraform-code-standards/tree/bdf5e355ec2ac03563f6fc6328dfecc487fa0a1c) | 验证、计划、执行分离；不引入 Azure 或 Terraform 部署能力 |
+| [Future coding standards](https://github.com/future-architect/coding-standards/tree/5688fc9b59b007a44c928afc338b26f9f05a8346) | 版本/方言前提、理由与 OpenAPI 合同；不强制 schema-first |
+| [Ops engineering skills](https://github.com/selvarajmurugesan90/ops-engineering-skills/tree/59bee31e760775948bc8a1199efac484df704fc6) | 触发、前置环境、失败模式与维护约定；不整组安装 |
+| [1C quality gate](https://github.com/Romandredan/1c-quality-gate/tree/b705145729732683ae04c7d4e7579628537a1892) | 风险与显式证据；不复制实现、不声称已有宿主 Hook |
+| [Genie Code demo](https://github.com/databricks-solutions/genie-code-skills-demo/tree/8d41b1077f3ba1827bb9ab3b154e176ac3119a62) | 指令/模板/服务分离与数据治理设计比较；DB License 有服务范围限制，不复制实现或 Skill 文本 |
+
+上述是阅读快照，不是安装依赖。新增 [风险与证据](quality-gates.md) 和 [契约规则](contracts-security.md) 是本包独立编写的项目流程，未运行上游完整测试。原仓库 `docs/upstream-comparison.md` 保留具体文件、许可与不采用项；该维护材料不要求业务项目日常加载，也不随规则草稿导出。
+
+## Agent 加载与使用
 
 [Codex AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md) 用作项目规则入口；[Skill 文档](https://learn.chatgpt.com/docs/build-skills) 说明按需加载。其他 Agent 是否自动加载取决于其支持机制，必要时显式指定本地文件。
 

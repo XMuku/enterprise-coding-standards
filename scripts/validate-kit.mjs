@@ -33,6 +33,9 @@ const required = [
   'references/modular-architecture.md', 'references/harmonyos-arkui.md',
   'docs/framework-integration.md', 'docs/verification-beta5.md', 'prompts/12-harmonyos-arkui-feature.md',
   'docs/verification-beta6.md',
+  'references/quality-gates.md', 'docs/upstream-comparison.md', 'docs/evidence-validation.md',
+  'docs/verification-beta7.md', 'scripts/validate-evidence.mjs', 'scripts/validate-evidence.test.mjs',
+  'assets/evidence-plan.example.json', 'assets/evidence-report.example.json', '.github/pull_request_template.md',
 ];
 
 function within(root, target) {

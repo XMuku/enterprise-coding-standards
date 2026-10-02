@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "subject": "replace-with-verified-snapshot-id",
+  "risk": "standard",
+  "drivers": ["Example only: changed order request contract"],
+  "checks": [
+    { "id": "contract-tests", "kind": "command", "scope": "Request boundaries and error contract", "applicable": true },
+    { "id": "architecture-review", "kind": "review", "scope": "Changed dependencies and public fields", "applicable": true },
+    { "id": "device-check", "kind": "review", "scope": "Device behavior", "applicable": false, "reason": "Example only: server-only change" }
+  ]
+}

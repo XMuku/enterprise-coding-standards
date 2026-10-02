@@ -6,9 +6,11 @@ A portable, local-first skill and project-adoption kit for AI coding agents.
 
 GitHub 仓库：[XMuku/enterprise-coding-standards](https://github.com/XMuku/enterprise-coding-standards)。
 
-当前版本：**1.2.0-beta.6**。面向团队试用的规范模板，不是认证标准。不绑定模型供应商，不要求购买特定云服务。维护者已决定 **不添加 LICENSE**；公开可见不等于授予开源使用许可，详见 [发布与使用权说明](docs/releasing.md)。
+当前版本：**1.2.0-beta.7**。面向团队试用的规范模板，不是认证标准。不绑定模型供应商，不要求购买特定云服务。维护者已决定 **不添加 LICENSE**；公开可见不等于授予开源使用许可，详见 [发布与使用权说明](docs/releasing.md)。
 
 ## 完整流程与提示词
+
+beta.7 对照五个参考仓库，新增 [风险分级与证据规则](references/quality-gates.md)、[验证记录校验器](docs/evidence-validation.md)，补齐 API 契约来源与敏感字段流向的写前设计。取舍、固定来源快照及未完成项见 [比较与落地说明](docs/upstream-comparison.md)。保留现有五栈与本地优先，不安装外部 Skill、云服务或会话 Hook。
 
 想直接交给 Agent 开发，从 [13 类任务提示词](prompts/README.md) 选择一份即可。想了解每一步为什么、先做什么和如何验收，阅读 [Agent 完整规范流](docs/agent-workflow.md)。
 
@@ -67,7 +69,7 @@ GitHub 仓库：[XMuku/enterprise-coding-standards](https://github.com/XMuku/ent
 
 beta.5 将通用框架材料整合为 [模块架构规则](references/modular-architecture.md) 和鸿蒙专项，而不是叠加十个重复 Skill。三层职责、MVVM、组件、状态、资源与迁移按实际项目采用；整合映射及冲突处理见 [整合说明](docs/framework-integration.md)。
 
-beta.6 将原四栈补齐为工程蓝图：目录树、各层职责、文件/类型/方法/字段命名、允许与禁止的依赖、功能创建顺序及核验方式。首次采用把默认或已有布局记进 [项目画像](assets/project-profile-template.md)，日常 Agent 创建文件前直接查询；不需要每次搜索上游或重新选择目录。已填映射与前后端串联见 [采用示例](docs/example-adoption.md)。本版的发布前检查与限制见 [验证记录](docs/verification-beta6.md)，远端 CI 以对应提交的实际运行结果为准。
+beta.6 将原四栈补齐为工程蓝图：目录树、各层职责、文件/类型/方法/字段命名、允许与禁止的依赖、功能创建顺序及核验方式。首次采用把默认或已有布局记进 [项目画像](assets/project-profile-template.md)，日常 Agent 创建文件前直接查询；不需要每次搜索上游或重新选择目录。已填映射与前后端串联见 [采用示例](docs/example-adoption.md)。当前本地检查与限制见 [beta.7 验证记录](docs/verification-beta7.md)，远端 CI 以对应提交的实际运行结果为准。
 
 | 技术栈 | 明确规定的主要角色 | 保留的项目选择 |
 | --- | --- | --- |
@@ -92,6 +94,7 @@ HTTP 接口层不是必建语言 interface；服务层也不是强制新增一�
 | 实现行为、修缺陷、组织测试 | [测试规范](references/testing.md) |
 | 加配置/日志、外部调用或后台任务 | [配置与日志](references/configuration-logging.md) |
 | 引依赖、提交变更、维护团队例外 | [变更管理](references/change-management.md) |
+| 选择验证范围、记录结果与缺口 | [风险与证据](references/quality-gates.md) |
 
 关键规则包含适用范围、正反例和核验方法；默认选择可被已确认团队约定替换。不会要求为一个小修复创建完整目录、审批流程或长规划。文件齐全用于随时查阅，不等于每次任务全量阅读。
 
@@ -122,7 +125,7 @@ node scripts/prepare-project.mjs --project "<absolute-project-directory>" --stac
 
 实际执行范围、评测中断和依赖漏洞风险集中记录在 [beta.3 验证报告](docs/verification-beta3.md)。示例是学习与检查演示，不是可直接上线的企业生产模板。
 
-beta.6 的工程蓝图与导出回归见 [本版验证报告](docs/verification-beta6.md)，beta.5 整合与发布见 [历史报告](docs/verification-beta5.md)；历史示例结果不自动视为本版全部流程或跨模型验证通过。鸿蒙规则尚未完成真实 SDK 构建与设备验证。
+beta.7 的工具与导出回归见 [本版验证报告](docs/verification-beta7.md)，beta.6 工程蓝图与发布见 [历史报告](docs/verification-beta6.md)；历史示例结果不自动视为本版全部流程或跨模型验证通过。鸿蒙规则尚未完成真实 SDK 构建与设备验证。
 
 ```shell
 npm run check
@@ -132,7 +135,7 @@ npm run check
 
 ```shell
 node scripts/validate-kit.mjs
-node --test scripts/prepare-project.test.mjs scripts/validate-kit.test.mjs scripts/example-support.test.mjs
+node --test scripts/prepare-project.test.mjs scripts/validate-kit.test.mjs scripts/example-support.test.mjs scripts/validate-evidence.test.mjs
 ```
 
 检查包结构、版本一致性、本地 Markdown 文件链接及大小写、常见个人路径/密钥格式，以及导出工具的正常、冲突和拒绝路径。测试产物只写入本仓库 `.tmp/`，可通过 `ENTERPRISE_KIT_TEST_ROOT` 指定其他绝对目录。网络链接、Markdown 锚点、引用式链接不在此校验器覆盖范围；这也不是完整的秘密扫描器。

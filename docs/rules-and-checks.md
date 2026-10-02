@@ -13,7 +13,9 @@ beta.3 提供 [关键正反例](rule-examples.md) 和 [可执行演示](../examp
 | [TYPE-01..02 接口与继承](../references/naming-design.md) | 确认真实扩展点和可替代关系 | 依赖/契约测试与审查；文件数不证明抽象合理 |
 | [SPRING-01..06](../references/java-spring.md) | 工程蓝图、Controller/Service/存储/DTO 职责，接口策略和创建顺序 | 命名/注册/ArchUnit 针对真实包验证；必须防止空匹配 |
 | [EE-01..06](../references/java-ee.md) | WAR/EAR 模块、Resource/Servlet、服务/领域/存储、容器资源归属 | 打包内容、架构及目标容器集成；编译不等于部署兼容 |
-| [API-01..02 接口与幂等](../references/contracts-security.md) | 明确输入输出、错误、重复请求和权限 | 接口/契约/拒绝路径测试；编译不足以证明兼容 |
+| [API-01..03 接口与契约](../references/contracts-security.md) | 明确输入输出、错误、重复请求、权限和契约唯一来源 | 接口/契约/拒绝路径与生成一致性；解析 YAML 不足以证明兼容 |
+| [SEC-01 敏感字段](../references/contracts-security.md) | 确认用途、允许流向、保护与保留依据 | 服务端拒绝、响应/日志泄露测试与审查；字段标注不等于保护 |
+| [GATE-01..05 风险与证据](../references/quality-gates.md) | 按影响选择风险和检查计划，区分执行授权 | 可选记录校验器检验声明、非空覆盖与哈希；不证明真实执行或自动阻止会话结束 |
 | [DB-01..05 数据与迁移](../references/data-access.md) | 精度、查询边界、并发约束、旧数据升级 | 实际数据库测试；不由 mock 或内存库结果全部代替 |
 | [TEST-01..05 测试有效性](../references/testing.md) | 选择可观察断言、发现路径、隔离与失败场景 | 真实运行数量/结果和回归用例；不以空通过充数 |
 | [CONFIG-01..02、LOG-01 配置与日志](../references/configuration-logging.md) | 来源/缺省、秘密分类和脱敏 | 配置/日志测试与审查；不打印秘密作为验证 |

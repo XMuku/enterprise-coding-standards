@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "subject": "replace-with-verified-snapshot-id",
+  "results": [
+    { "id": "contract-tests", "status": "not-run", "summary": "Template: no command executed", "artifacts": [] },
+    { "id": "architecture-review", "status": "not-run", "summary": "Template: no review performed", "artifacts": [] },
+    { "id": "device-check", "status": "not-applicable", "summary": "Example only: server-only change", "artifacts": [] }
+  ]
+}

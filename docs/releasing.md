@@ -1,6 +1,6 @@
 # 发布准备与许可证状态
 
-当前版本：`1.2.0-beta.6`。维护者已决定在 GitHub 发布时不添加 LICENSE，并授权将本版推送到现有公开仓库。发布前验证与未验证项见 [本版记录](verification-beta6.md)，beta.5 见 [历史记录](verification-beta5.md)；远端状态以仓库提交和对应 Actions 结果为准。源码推送不表示创建了 Release 或标签。
+当前版本：`1.2.0-beta.7`。维护者已于 2026-10-03 要求继续完善并推送到现有 GitHub 仓库，许可证决定保持不变。发布前验证与未验证项见 [本版记录](verification-beta7.md)，beta.6 见 [历史记录](verification-beta6.md)；远端状态以对应提交和 Actions 结果为准。源码推送不表示创建了 Release 或标签。
 
 ## 已决定不添加许可证
 
@@ -27,7 +27,7 @@ GitHub 不要求仓库必须选择许可证。没有许可证时，默认版权�
 5. 执行已授权上传。逐项审查拟提交文件，不盲目 `git add .`；保留已有修改，不强推、不改写历史、不替换已有远端，除非这些动作另有明确授权。
 6. 上传后核验。查看实际提交与公开内容，取得真实仓库 URL；如执行了 CI，读取实际结果。推送成功不等于所有 job 通过，CI 成功也不等于已经创建 Release。
 
-只要求完善仓库文档的任务停在第 3 步。发布准备提示词见 [11 GitHub 发布准备](../prompts/11-release-preparation.md)，不会因为复制这段流程自动授权远端动作；已授权上传的实际结果见本版验证记录。
+只要求完善仓库文档的任务停在第 3 步。发布准备提示词见 [11 GitHub 发布准备](../prompts/11-release-preparation.md)，不会因为复制这段流程自动授权远端动作；以前上传的结果不能代替本版发布与远端验证。
 
 ## 发布前清单
 
@@ -45,7 +45,7 @@ GitHub 不要求仓库必须选择许可证。没有许可证时，默认版权�
 
 CI 使用普通 `push` / `pull_request` 事件、只读仓库权限，不使用 `pull_request_target`，不自动发布、上传业务资料或使用部署密钥。当前固定 [checkout v7.0.1 的发布提交](https://github.com/actions/checkout/commit/3d3c42e5aac5ba805825da76410c181273ba90b1) 和 [setup-node v7.0.0 的发布提交](https://github.com/actions/setup-node/commit/820762786026740c76f36085b0efc47a31fe5020)；固定版本不等于完整安全审计。
 
-示例 job 额外固定 [setup-java v6.0.1 提交](https://github.com/actions/setup-java/commit/de7274f081f381c8f8158605e0321c36c376e2e6)，配置 Java 17 / Node.js 24，在 Linux 与 Windows 上运行正反例；配置只描述目标矩阵，具体提交是否通过须查看实际执行。本版执行范围见 [验证记录](verification-beta6.md)，最近示例执行与依赖审计风险见 [beta.5](verification-beta5.md)，更早范围见 [beta.3 报告](verification-beta3.md)。
+示例 job 额外固定 [setup-java v6.0.1 提交](https://github.com/actions/setup-java/commit/de7274f081f381c8f8158605e0321c36c376e2e6)，配置 Java 17 / Node.js 24，在 Linux 与 Windows 上运行正反例；配置只描述目标矩阵，具体提交是否通过须查看实际执行。本版实际执行与重新依赖审计见 [beta.7 验证记录](verification-beta7.md)，历史范围见 [beta.6](verification-beta6.md) 和 [beta.3 报告](verification-beta3.md)。
 
 ## 版本与兼容性
 

@@ -37,7 +37,7 @@ test('exports only chosen stacks and preserves approved rules', () => {
   const result = run(project, ['--stack', 'uni-app', '--stack', 'uni-app', '--apply']);
   assert.equal(result.status, 0, result.stderr);
   const output = JSON.parse(result.stdout);
-  assert.equal(output.written.length, 16);
+  assert.equal(output.written.length, 17);
   assert.deepEqual(output.stacks, ['java-spring', 'uni-app']);
   assert.equal(output.version, JSON.parse(fs.readFileSync(path.join(kit, 'package.json'), 'utf8')).version);
   assert.equal(fs.readFileSync(path.join(project, 'AGENTS.md'), 'utf8'), 'existing rules');
@@ -45,7 +45,7 @@ test('exports only chosen stacks and preserves approved rules', () => {
   assert.equal(fs.existsSync(path.join(docs, 'java-ee.md')), false);
   assert.equal(fs.existsSync(path.join(docs, 'miniprogram.md')), false);
   assert.equal(fs.existsSync(path.join(docs, 'harmonyos-arkui.md')), false);
-  for (const name of ['java-spring', 'uni-app', 'common', 'contracts-security', 'checks', 'sources',
+  for (const name of ['java-spring', 'uni-app', 'common', 'contracts-security', 'checks', 'quality-gates', 'sources',
     'repository-structure', 'modular-architecture', 'naming-design', 'testing', 'configuration-logging', 'change-management', 'data-access']) {
     const source = new URL(`../references/${name}.md`, import.meta.url);
     assert.equal(fs.readFileSync(path.join(docs, `${name}.md`), 'utf8'), fs.readFileSync(source, 'utf8'));
@@ -77,7 +77,7 @@ test('each stack exports a self-contained profile with only selected links', () 
 test('every nonempty stack combination exports exactly its self-contained rule set', () => {
   const stacks = ['java-spring', 'java-ee', 'uni-app', 'miniprogram', 'harmonyos-arkui'];
   const common = [
-    'common.md', 'contracts-security.md', 'checks.md', 'sources.md', 'project-profile.md', 'checks-plan.md',
+    'common.md', 'contracts-security.md', 'checks.md', 'quality-gates.md', 'sources.md', 'project-profile.md', 'checks-plan.md',
     'repository-structure.md', 'modular-architecture.md', 'naming-design.md', 'testing.md', 'configuration-logging.md', 'change-management.md',
   ];
   for (let mask = 1; mask < (1 << stacks.length); mask += 1) {
@@ -165,7 +165,7 @@ test('can export all five stack references without installing tools', () => {
   const project = fixture('all-stacks');
   const result = run(project, ['--stack', 'java-ee', '--stack', 'uni-app', '--stack', 'miniprogram', '--stack', 'harmonyos-arkui', '--apply']);
   assert.equal(result.status, 0, result.stderr);
-  assert.equal(JSON.parse(result.stdout).written.length, 19);
+  assert.equal(JSON.parse(result.stdout).written.length, 20);
   for (const stack of ['java-spring', 'java-ee', 'uni-app', 'miniprogram', 'harmonyos-arkui']) {
     assert.equal(fs.existsSync(path.join(project, 'docs', 'coding-standards', `${stack}.md`)), true);
   }
@@ -221,7 +221,7 @@ test('exports into paths containing spaces and non-ASCII characters', () => {
   const project = fixture('project \u9879\u76ee with spaces');
   const result = run(project, ['--apply']);
   assert.equal(result.status, 0, result.stderr);
-  assert.equal(JSON.parse(result.stdout).written.length, 15);
+  assert.equal(JSON.parse(result.stdout).written.length, 16);
 });
 
 test('supports a kit installed inside the target project', () => {
