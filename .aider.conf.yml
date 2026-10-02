@@ -1,0 +1,10 @@
+# Run from the repository root. Merge existing configuration; never overwrite it.
+read:
+  - AGENTS.md
+  - .aider.rules
+  - docs/agent/04-agent-contract.md
+auto-commits: false
+dirty-commits: false
+auto-lint: false
+auto-test: false
+git-commit-verify: true

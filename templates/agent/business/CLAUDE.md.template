@@ -1,0 +1,6 @@
+# Business Project Coding Rules
+
+Existing enterprise standards and approved project decisions are authoritative; the imported contract cannot override them. Identify real scope, acceptance, paths/names/dependencies and API/field semantics before the first relevant write. Preserve edits/generated inputs, protect secrets/private data, avoid unsafe SQL/deserialization and run real checks. Report gaps; do not publish without authorization. Protocol extensions are off.
+
+@AGENTS.md
+@docs/coding-standards/agent-contract.md

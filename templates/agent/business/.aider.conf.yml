@@ -1,0 +1,12 @@
+# Candidate: merge with existing config and launch from the business project root.
+read:
+  - AGENTS.md
+  - .aider.rules
+  - docs/coding-standards/project-profile.md
+  - docs/coding-standards/common.md
+  - docs/coding-standards/agent-contract.md
+auto-commits: false
+dirty-commits: false
+auto-lint: false
+auto-test: false
+git-commit-verify: true

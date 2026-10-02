@@ -1,0 +1,9 @@
+# Business Project Rules for Aider
+
+Load through the project's .aider.conf.yml read list, not by filename alone. Use AGENTS.md, the adopted common rules, project profile and agent-contract.md. Existing enterprise standards win; this is not the standards-kit maintenance workflow.
+
+Before writing, settle scope/acceptance, actual package/file paths, names/dependencies, API/field semantics, security and verification. Preserve edits, generated inputs and compatibility; do not leak secrets/private paths, produce unsafe SQL/deserialization, weaken checks or publish without authorization.
+
+Add only the required task-specific standards as --read or /read context, including java-spring.md or java-ee.md and relevant naming/security/data/testing rules. If a required rule is not in context, request its read-only inclusion before the affected edit. Markdown links do not recursively load files. Use /ls to inspect the read-only list; do not /add the conventions as editable files.
+
+Run actual project checks explicitly. Do not commit existing or generated edits automatically. Report pass/fail/blocked/not-run/not-applicable and missing coverage. Protocol extensions remain off; a read-only chat file is not an OS permission boundary.

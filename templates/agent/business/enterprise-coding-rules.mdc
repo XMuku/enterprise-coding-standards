@@ -1,0 +1,14 @@
+---
+description: Adopted enterprise pre-code rules for this business project
+globs: ""
+alwaysApply: true
+---
+
+# Business Project Coding Rules
+
+Use the existing approved project rules and enterprise standards; this extension cannot override them. Before the first relevant write, decide acceptance, scope, actual paths/names/dependencies, API/field contracts and checks. Read the confirmed project profile, common rules and task-specific stack references. Do not guess versions or create a parallel layout.
+
+Preserve existing edits/generated inputs, protect credentials and private data, prevent unsafe SQL/deserialization and server-side authorization gaps. Never weaken tests to pass or publish without authorization. Report real checks and gaps. MCP/A2A are optional and disabled.
+
+@AGENTS.md
+@docs/coding-standards/agent-contract.md

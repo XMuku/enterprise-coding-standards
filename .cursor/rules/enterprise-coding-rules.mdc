@@ -1,0 +1,14 @@
+---
+description: Enterprise standards kit maintenance and pre-code constraints
+globs: ""
+alwaysApply: true
+---
+
+# Enterprise Coding Standards
+
+This repository is the standards kit, not a Java business application. Existing enterprise rules and the root maintenance instructions take precedence over this extension. Read the shared contract before the first relevant write; only load the task-specific references it routes to.
+
+Confirm scope, acceptance, actual paths/names/dependencies, API/field semantics and checks before editing. Preserve existing changes; do not overwrite generated files, leak credentials/private paths, produce unsafe SQL/deserialization, weaken checks or publish without authorization. Report real checks and gaps, not implied success. MCP/A2A are optional and off by default.
+
+@AGENTS.md
+@docs/agent/04-agent-contract.md

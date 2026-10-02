@@ -1,0 +1,9 @@
+# Enterprise Coding Standards for Aider
+
+This is an ordinary read-only conventions file, loaded through .aider.conf.yml or --read. The filename alone has no automatic loading semantics.
+
+Follow AGENTS.md for standards-kit maintenance and docs/agent/04-agent-contract.md for the shared workflow. Existing enterprise rules win over this extension; this kit is not a Java application. Read task-specific references before code changes; links do not automatically add files to Aider context.
+
+Decide scope, acceptance, actual paths/names/dependencies, API/field contracts and verification before the first relevant write. Preserve existing edits, generated inputs and public compatibility. Never leak secrets/private paths, generate unsafe SQL/deserialization, disable checks to pass or publish without authorization. Report real results and missing coverage.
+
+Automatic commits, dirty-file commits and automatic lint/test are disabled in the supplied config. This does not waive testing: run verified project commands explicitly within the authorized scope. Do not add rules as editable files. MCP/A2A remain optional and disabled.
